@@ -1,7 +1,7 @@
 using System;
 
-// Creativity: I included more prompts, I also improved the display formatting,
-// and used a loop menu.
+// Creativity: I included more prompts, I improved the display formatting,
+// and also used a loop menu.
 
 class Program
 {
