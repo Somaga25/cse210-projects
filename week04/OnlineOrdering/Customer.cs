@@ -1,29 +1,26 @@
-namespace OnlineOrdering
+public class Customer
 {
-    public class Customer
+    private string _name;
+    private Address _address;
+
+    public Customer(string name, Address address)
     {
-        private string _name;
-        private Address _address;
+        _name = name;
+        _address = address;
+    }
 
-        public Customer(string name, Address address)
-        {
-            _name = name;
-            _address = address;
-        }
+    public bool LivesInUSA()
+    {
+        return _address.IsUSA();
+    }
 
-        public bool LivesInUSA()
-        {
-            return _address.IsUSA();
-        }
+    public string GetName()
+    {
+        return _name;
+    }
 
-        public string GetName()
-        {
-            return _name;
-        }
-
-        public Address GetAddress()
-        {
-            return _address;
-        }
+    public Address GetAddress()
+    {
+        return _address;
     }
 }

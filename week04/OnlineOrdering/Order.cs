@@ -1,56 +1,56 @@
 using System.Collections.Generic;
 
-namespace OnlineOrdering
+public class Order
 {
-    public class Order
+    private List<Product> _products;
+    private Customer _customer;
+
+    public Order(Customer customer)
     {
-        private List<Product> _products;
-        private Customer _customer;
+        _customer = customer;
+        _products = new List<Product>();
+    }
 
-        public Order(Customer customer)
+    public void AddProduct(Product product)
+    {
+        _products.Add(product);
+    }
+
+    public double GetTotalCost()
+    {
+        double total = 0;
+
+        foreach (Product product in _products)
         {
-            _customer = customer;
-            _products = new List<Product>();
+            total += product.GetTotalCost();
         }
 
-        public void AddProduct(Product product)
+        if (_customer.LivesInUSA())
         {
-            _products.Add(product);
+            total += 5;
+        }
+        else
+        {
+            total += 35;
         }
 
-        public double GetTotalCost()
+        return total;
+    }
+
+    public string GetPackingLabel()
+    {
+        string result = "Packing Label:\n";
+
+        foreach (Product product in _products)
         {
-            double total = 0;
-
-            foreach (Product p in _products)
-            {
-                total += p.GetTotalCost();
-            }
-
-            // Shipping cost
-            if (_customer.LivesInUSA())
-                total += 5;
-            else
-                total += 35;
-
-            return total;
+            result += $"{product.GetName()} ({product.GetProductId()})\n";
         }
 
-        public string GetPackingLabel()
-        {
-            string label = "Packing Label:\n";
+        return result;
+    }
 
-            foreach (Product p in _products)
-            {
-                label += $"{p.GetName()} ({p.GetProductId()})\n";
-            }
-
-            return label;
-        }
-
-        public string GetShippingLabel()
-        {
-            return $"Shipping Label:\n{_customer.GetName()}\n{_customer.GetAddress().GetFullAddress()}";
-        }
+    public string GetShippingLabel()
+    {
+        return $"Shipping Label:\n{_customer.GetName()}\n{_customer.GetAddress().GetFullAddress()}";
     }
 }
