@@ -8,7 +8,7 @@ class Program
         List<Video> videos = new List<Video>();
 
         // Video 1
-        Video video1 = new Video("Learning C#", "John Doe", 600);
+        Video video1 = new Video("Learning C#", "Chisomaga Eke", 600);
         video1.AddComment(new Comment("Alice", "Great video!"));
         video1.AddComment(new Comment("Bob", "Very helpful."));
         video1.AddComment(new Comment("Eve", "Nice explanation."));
