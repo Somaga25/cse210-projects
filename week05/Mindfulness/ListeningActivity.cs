@@ -5,9 +5,9 @@ public class ListingActivity : Activity
 {
     private List<string> _prompts = new List<string>
     {
-        "List things you are grateful for.",
-        "List people who have influenced you.",
-        "List things you enjoy doing."
+        "Who are people you appreciate?",
+        "What are your strengths?",
+        "Who have you helped recently?"
     };
 
     private Random _rand = new Random();
@@ -21,10 +21,12 @@ public class ListingActivity : Activity
     {
         DisplayStartingMessage();
 
-        Console.WriteLine("\nPrompt:");
-        Console.WriteLine($"> {GetRandomPrompt()}");
+        string prompt = _prompts[_rand.Next(_prompts.Count)];
 
-        Console.WriteLine("\nStart listing items:");
+        Console.WriteLine("\nPrompt:");
+        Console.WriteLine($"> {prompt}");
+
+        Console.WriteLine("\nYou may begin in:");
         ShowCountDown(5);
 
         List<string> items = new List<string>();
@@ -39,10 +41,5 @@ public class ListingActivity : Activity
         Console.WriteLine($"\nYou listed {items.Count} items!");
 
         DisplayEndingMessage();
-    }
-
-    private string GetRandomPrompt()
-    {
-        return _prompts[_rand.Next(_prompts.Count)];
     }
 }

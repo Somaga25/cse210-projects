@@ -7,18 +7,20 @@ public class ReflectingActivity : Activity
     {
         "Think of a time you helped someone.",
         "Think of a time you overcame a challenge.",
-        "Think of a moment you felt truly happy."
+        "Think of a time you did something difficult."
     };
 
     private List<string> _questions = new List<string>
     {
         "Why was this meaningful?",
-        "What did you learn from this?",
-        "How did you feel at the time?",
+        "What did you learn?",
+        "How did you feel?",
         "What made this experience special?"
     };
 
     private Random _rand = new Random();
+    private int _lastPromptIndex = -1;
+    private int _lastQuestionIndex = -1;
 
     public ReflectingActivity()
         : base("Reflecting", "This activity helps you reflect on meaningful experiences.")
@@ -29,8 +31,9 @@ public class ReflectingActivity : Activity
     {
         DisplayStartingMessage();
 
-        Console.WriteLine("\nConsider the following prompt:");
-        Console.WriteLine($"> {GetRandomPrompt()}");
+        int promptIndex = GetRandomIndex(_prompts.Count, ref _lastPromptIndex);
+        Console.WriteLine("\nConsider this prompt:");
+        Console.WriteLine($"> {_prompts[promptIndex]}");
 
         Console.WriteLine("\nReflect on the following questions:");
 
@@ -38,20 +41,23 @@ public class ReflectingActivity : Activity
 
         while (DateTime.Now < endTime)
         {
-            Console.Write($"\n{GetRandomQuestion()} ");
-            ShowSpinner(5);
+            int questionIndex = GetRandomIndex(_questions.Count, ref _lastQuestionIndex);
+            Console.Write($"\n{_questions[questionIndex]} ");
+            ShowSpinner(4);
         }
 
         DisplayEndingMessage();
     }
 
-    private string GetRandomPrompt()
+    private int GetRandomIndex(int count, ref int lastIndex)
     {
-        return _prompts[_rand.Next(_prompts.Count)];
-    }
+        int newIndex;
+        do
+        {
+            newIndex = _rand.Next(count);
+        } while (newIndex == lastIndex);
 
-    private string GetRandomQuestion()
-    {
-        return _questions[_rand.Next(_questions.Count)];
+        lastIndex = newIndex;
+        return newIndex;
     }
 }

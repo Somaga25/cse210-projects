@@ -3,7 +3,7 @@ using System;
 public class BreathingActivity : Activity
 {
     public BreathingActivity()
-        : base("Breathing", "This activity helps you relax by guiding your breathing.")
+        : base("Breathing", "This activity will help you relax by guiding your breathing in and out slowly.")
     {
     }
 

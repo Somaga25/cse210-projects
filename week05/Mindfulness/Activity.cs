@@ -18,6 +18,7 @@ public class Activity
         Console.Clear();
         Console.WriteLine($"--- {_name} Activity ---");
         Console.WriteLine(_description);
+
         Console.Write("\nEnter duration (in seconds): ");
         _duration = int.Parse(Console.ReadLine());
 
@@ -30,7 +31,7 @@ public class Activity
         Console.WriteLine("\nWell done!");
         ShowSpinner(2);
 
-        Console.WriteLine($"\nYou have completed {_duration} seconds of the {_name} Activity.");
+        Console.WriteLine($"\nYou completed {_duration} seconds of the {_name} Activity.");
         ShowSpinner(3);
     }
 
