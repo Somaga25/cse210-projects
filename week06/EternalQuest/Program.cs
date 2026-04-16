@@ -4,6 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the EternalQuest Project.");
+        GoalManager manager = new GoalManager();
+        manager.Start();
+
+        // Creativity: Added level system based on score
+        // Level increases every 1000 points to motivate the user
     }
 }
